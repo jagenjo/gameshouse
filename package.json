@@ -1,0 +1,25 @@
+{
+  "name": "moregamer",
+  "version": "1.0.0",
+  "description": "Server to run games",
+  "main": "main.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.16.2",
+    "express-ws": "^3.0.0",
+    "md5": "^2.2.1",
+    "mysql": "^2.15.0",
+    "redis": "^2.8.0",
+    "validator": "^9.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "server",
+    "games"
+  ],
+  "author": "Javi Agenjo <javi.agenjo@gmail.com> (http://www.tamats.com)",
+  "license": "MIT"
+}

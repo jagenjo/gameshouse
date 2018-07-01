@@ -1,0 +1,20 @@
+{
+	"TestSDK": {
+		"name":"Test SDK",
+		"description":"this game allows to test all the functionalities of the Games SDK",
+		"version":"0.1",
+		"launch":"games/testSDK/",
+		"folder":"../public/games/testSDK/",
+		"includes": ["js/testSDKServer.js"],
+		"panel": "admin.html"
+	},
+	"SpaceGame": {
+		"name":"Space Game",
+		"description":"Strategy game set on the space",
+		"version":"0.1",
+		"max_players":2,
+		"launch":"games/spaceGame/",
+		"folder":"../public/games/spaceGame/",
+		"includes": ["js/extra/gl-matrix.js", "js/world.js", "js/entities.js", "js/ships.js", "js/game.js", "js/gameServer.js"]
+	}
+}

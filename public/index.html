@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>GamesHouse</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	<link href="js/extra/ladda.min.css" rel="stylesheet" >
+
+  </head>
+
+  <body>
+
+
+<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
+
+	<div class="navbar-header">
+		<span>GamesHouse</span>
+	</div>
+	
+	<div id="nav-user-area" class="nav navbar-nav navbar-right not-nav hidden-xs hidden-sm">
+
+		<li class="dropdown profile_menu">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='myUsername'></span> <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+			  <li><a href="#">My Account</a></li>
+			  <li class="divider"></li>
+			  <li><a href="#" onclick='Login.actionLogout(); return false'>Sign Out</a></li>
+			</ul>
+		</li>
+
+		<!-- 
+			<button class="btn btn-sm btn-primary logout-button" type="submit" style=""><span class="ladda-label"><span class="glyphicon glyphicon-off"></span> Log out</span></button>
+		-->
+	</div>
+
+	<div id="navbar-expand">
+		
+	</div>
+</div>
+
+<div id="wrap">
+		<div id="intro" class="starter-template" style="display: none">
+			<h1 class="tagline">Welcome to GamesHouse</h1>
+			<p>An platform for turn-based browser games. You can create games or join existing ones.</p>
+			<p>
+				<button id="login-button" type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#login-dialog">Log in</button>
+				<button id="signup-button" type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#signup-dialog">Create account</button>
+			</p>
+		</div>
+
+		<div id="dashboard" class="starter-template" style="display: none">
+			<!-- <h1 class="tagline">Welcome <span class="myUsername"></span></h1> -->
+
+			<div class="games-list">
+				<div class="block">
+					<h3>Games list</h3>
+					<table class="table">
+					 <thead>
+						<tr>
+						  <th style="width: 50px"></th>
+						  <th>Title</th>
+						  <th class='hidden-xs'>Game</th>
+						  <th class="hidden-xs hidden-sm" style="width: 100px">Status</th>
+						  <th class="hidden-xs hidden-sm" style="width: 50px">Players</th>
+						  <th style="width: 200px"></th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  </tbody>	
+					</table>
+					
+					<div class="actions-toolbar">
+						<p>
+							<button type="button" class="btn btn-primary ladda-button" data-toggle="modal" data-target="#newgame-dialog" data-color="green"><span class="glyphicon glyphicon-folder-open" style="margin-right: 5px"></span> Create Game</button>
+							<button id="update-games-list" type="button" class="btn ladda-button" data-style="slide-up" data-color="green"><span class="ladda-label"><span class="glyphicon glyphicon-refresh" style="margin-right: 5px"></span> Update</span></button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row dash-cols">
+				<div id="games-messages" class="games-status col-sm-6 col-md-6">
+					<div class="block">
+						<table class="table">
+						 <thead>
+							<tr>
+							  <th>Messages</th>
+							</tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>No messages</td>
+						    </tr>
+						  </tbody>	
+						</table>
+					</div>			
+				</div>			
+			
+				<div id="games-status" class="games-status col-sm-6 col-md-6">
+					<div class="block">
+						<table class="table">
+						 <thead>
+							<tr>
+							  <th>Info</th>
+							  <th>Value</th>
+							</tr>
+						  </thead>
+						  <tbody>
+						  </tbody>	
+						</table>
+					</div>			
+				</div>			
+			</div>
+		</div>
+
+		<div id="game-panel" class="starter-template" style="display: none">
+			<div class="row dash-cols">
+				<div class="block breadcrumb">
+					<p><a onclick="Games.showDashboard();">Go back</a></p>
+				</div>			
+			</div>			
+
+			<h1 class="tagline">
+				<span class="game-name"></span><span class="edit-title glyphicon glyphicon-pencil" style="font-size: 0.5em; margin-left: 5px"></span>
+				<button class="btn show-qrcode"><span class="glyphicon glyphicon-qrcode" style="margin-right: 5px"></span>Card</button>
+				<button class="btn btn-primary launch-game game-action" data-game_id="-1"><span class="glyphicon glyphicon-play"></span></button>
+				<button class="btn btn-warning sleep-game game-action" data-game_id="-1"><span class="glyphicon glyphicon-stop"></span></button>
+				<button class="btn btn-primary refresh-game game-action" data-game_id="-1"><span class="glyphicon glyphicon-refresh"></span></button>
+				<span class='text'>Port <span class="game-port"></span></span>
+			</h1>
+			<div class="block">
+				<p class='topic breadcrumb'><span class='content'></span><span class="edit-topic glyphicon glyphicon-pencil" style="float:right; margin-left: 5px"></span></p>
+			</div>
+
+			<div id="game-status" class="col-sm-6 col-md-6">
+						
+				<div class="block players-list">
+					<table class="table">
+					 <thead>
+						<tr>
+						  <th></th>
+						  <th>Players</th>
+						  <th>Info</th>
+						  <th style='width:50px'>Score</th>
+						  <th></th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  </tbody>	
+					</table>
+					<form class="form-invitegame">
+					<div class="invite-form input-group">
+						<input type="text" name="username_mail" class="form-control" autofocus="">
+						<input type="hidden" class="gameid-field" name="game_id" value="">
+						<span class="input-group-btn">
+						  <button class="invite-to-game btn btn-default btn-info ladda-button" data-style="slide-up" data-color="green" type="submit">
+							<span class="ladda-label"><span class="glyphicon glyphicon-plus" style="margin-right: 5px"></span> Invite!</span>
+						  </button>
+						</span>
+				  </div>
+				  </form>
+				</div>			
+						
+				<div id="game-admin-panel" class="block game-admin-panel">
+					<table class="table">
+					 <thead>
+						<tr>
+						  <th>Custom Panel</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td><iframe src=""></iframe></td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>			
+			</div>	
+
+			<div class="row dash-cols">
+				<div id="game-log" class="col-sm-6 col-md-6">
+					<div class="block">
+						<table class="table">
+						 <thead>
+							<tr>
+							  <th>Log</th>
+							</tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>No messages</td>
+						    </tr>
+						  </tbody>
+						</table>
+						<form class="send-command-form">
+						<div class="input-group">
+							<input type="text" name="command_input" class="form-control command_input" autofocus="">
+							<input type="hidden" class="gameid-field" name="game_id" value="">
+							<span class="input-group-btn">
+							  <button class="send-command btn btn-default btn-info" type="submit">Send</button>
+							</span>
+					  </div>
+					  </form>
+					</div>			
+				</div>			
+			</div>
+		</div>
+</div>
+
+<div id="fullgame-wrap" style="display: none">
+</div>
+
+	<!--
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted"></p>
+      </div>
+    </div>
+	-->
+
+	<div id="login-dialog" class="container modal fade" style="display: none">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="account-wall">
+					<h1 class="text-center login-title">Sign in to GamesHouse</h1>
+					<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+						alt="">
+					<form class="form-login">
+						<input type="text" class="form-control username-field" placeholder="Username" required autofocus value="tamat">
+						<input type="password" class="form-control password-field" placeholder="Password" required>
+						<button class="btn btn-lg btn-primary btn-block submit-button ladda-button" type="submit" data-style="expand-right" data-color="green"><span class="ladda-label">Sign in</span></button>
+						<label class="checkbox pull-left">
+							<input type="checkbox" value="remember-me">
+							Remember me
+						</label>
+						<!--<a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>-->
+						<a href="#" class="pull-right need-help" type="button" data-dismiss="modal">Cancel </a><span class="clearfix"></span>
+						<a href="#" class="text-center new-account" data-dismiss="modal" data-toggle="modal" data-target="#signup-dialog">Create an account </a>
+					</form>
+					<div class="alert alert-danger" style="width:90%; margin: 0 auto; display: none"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="signup-dialog" class="container modal fade" style="display: none">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4" style="width: 500px">
+				<div class="account-wall">
+					<div class="modal-wrap">
+						<h1 class="text-center login-title">Sign up in GamesHouse</h1>
+						<form class="form-signup">
+							<div class="form-group">
+								<label for="username-field">Username</label>
+								<input type="text" class="form-control username-field" placeholder="" required autofocus>
+							</div>
+							<div class="form-group">
+								<label for="password-field">Password</label>
+							<input type="password" class="form-control password-field" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<label for="mail-field">Mail</label>
+								<input type="text" class="form-control mail-field" placeholder="" required>
+							</div>
+
+							<button class="btn btn-lg btn-primary btn-block submit-button ladda-button" type="submit" data-style="expand-right" data-color="green"><span class="ladda-label">Create</span></button>
+
+							<a href="#" class="pull-right need-help" type="button" data-dismiss="modal">Cancel </a><span class="clearfix"></span>
+						</form>
+						<div class="alert alert-danger" style="width:90%; margin: 0 auto; display: none"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="newgame-dialog" class="container modal fade" style="display: none">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="account-wall">
+					<div class="modal-wrap">
+						<h1 class="text-center">Choose game</h1>
+						<form class="form-newgame">
+							<div class="form-group">
+								<label for="gamename-field">Title</label>
+								<input name="title" type="text" class="form-control gamename-field" placeholder="" required autofocus value="My Game">
+							</div>
+
+							<div class="form-group">
+								<label for="gametype-field">Game</label>
+								<select id="gametypes-select-list" name="game" class="form-control gametype-field" required>
+								  <option disabled>Loading...</option>
+								</select>
+							</div>
+
+							<button class="btn btn-lg btn-primary btn-block submit-button ladda-button" type="submit" data-style="expand-right" data-color="green"><span class="ladda-label">Create game</span></button>
+							<a href="#" class="pull-right need-help" type="button" data-dismiss="modal">Cancel </a><span class="clearfix"></span>
+						</form>
+						<div class="alert alert-danger" style="width:90%; margin: 0 auto; display: none"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="invite-dialog" class="container modal fade" style="display: none">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="account-wall">
+					<div class="modal-wrap">
+						<h1 class="text-center">Invite to game</h1>
+						<form class="form-invitegame">
+							<div class="form-group">
+								<label for="gamename-field">Username or mail</label>
+								
+								<div class="input-group">
+								<input type="text" name="username_mail" class="form-control" autofocus />
+								<input type="hidden" class='gameid-field' name="game_id" value="" />
+								<span class="input-group-btn">
+								  <button id="invite-to-game-button" class="btn btn-default btn-info ladda-button" data-style="slide-up" data-color="green" type="submit">
+								    <span class="ladda-label"><span class="glyphicon glyphicon-plus" style="margin-right: 5px"></span> Invite!</span>
+								  </button>
+								</span>
+								
+							      </div><!-- /input-group -->
+								
+  							</div>
+							<div class="alert alert-danger" style="width:90%; margin: 0 auto; display: none"></div>
+							<a href="#" class="pull-right need-help" type="button" data-dismiss="modal">Cancel </a><span class="clearfix"></span>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="qr-dialog" class="container modal fade" style="display: none">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="account-wall">
+					<div class="modal-wrap">
+						<h1 class="text-center">QR Code</h1>
+						<div class='qr-container'>
+						</div>
+						<a href="#" class="pull-right need-help" type="button" data-dismiss="modal">Close</a><span class="clearfix"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<div id="loading-box" style="display: none">
+		<span class="blinking">Loading...</span>
+	</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/extra/bootstrap.min.js"></script>
+    <script src="js/extra/bootbox.min.js"></script>
+	<script src="js/extra/spin.min.js"></script>
+	<script src="js/extra/ladda.min.js"></script>
+	<script src="js/extra/qrcode.min.js"></script>
+
+    <script src="js/code.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/login.js"></script>
+	<script>App.init();</script>
+  </body>
+</html>

@@ -1,0 +1,321 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300);
+
+/*
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Raleway Thin'), local('Raleway-Thin'), url(http://fonts.gstatic.com/s/raleway/v8/RJMlAoFXXQEzZoMSUteGWJBw1xU1rKptJj_0jans920.woff2) format('woff2'), url(http://fonts.gstatic.com/s/raleway/v8/RJMlAoFXXQEzZoMSUteGWLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+*/
+
+
+html,
+body {
+  font-family: 'Raleway';
+  font-weight: 300;
+  font-size: 20px;
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+  background-color: #eee;
+}
+
+p {
+	margin: 0;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  /* min-height: 100%; */
+  height: auto;
+  width: 100%;
+  /* Negative indent footer by its height */
+  /* margin: 0 auto -60px; */
+  /* Pad bottom by footer height */
+  padding: 20px;
+  position: absolute;
+  top: 50px;
+}
+
+@media (max-width: 480px){
+	#wrap {
+		padding: 2px;
+	}
+
+	.starter-template {
+		padding: 0 !important;
+	}	
+	
+	.block {
+		margin: 2px;
+	}	
+	
+	thead {
+		display: none;
+	}
+}
+
+#fullgame-wrap {
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	height: calc( 100% - 50px );
+	background-color: black;
+	overflow: hidden;
+}
+
+#fullgame-wrap iframe {
+	border: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+#footer > .container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.starter-template {
+  padding: 0 15px;
+}
+
+h1.tagline {
+	font-weight: bold;
+	letter-spacing: -2px;
+}
+
+.navbar-inverse {
+	background-color: #334;
+}
+
+
+.modal {
+	overflow-y: hidden;
+}
+
+.block {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.13);
+  border: 0;
+  margin-bottom: 30px;
+  background: #FFF;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.block h3, .block h4 {
+	font-weight: normal;
+	padding: 14px;
+	border-bottom: 1px solid #EEE;
+}
+
+.block th {
+	color: #d36442;
+}
+
+.block td {
+	padding: 10px;
+	border-top: 1px solid #FAFAFA !important;
+}
+
+.block .actions-toolbar {
+	padding: 10px;
+}
+
+td.last-col {
+	text-align: right;
+}
+
+table tr:nth-child(2n) {
+  background: #f8f8f8;
+}
+
+td p.topic {
+	font-size: 0.7em;
+	color: #888;
+}
+
+.games-status {
+	font-size: 0.8em;
+}
+
+
+#intro {
+	margin-top: 30px;
+}
+
+.modal-wrap {
+	width: 90%;
+	margin: auto;
+}
+
+#loading-box {
+	opacity: 0.8;
+	font-size: 2em;
+	width: 100%;
+	text-align: center;
+	margin-top: 100px;
+}
+
+#loading-box .blinking {
+	-webkit-animation: blink 5s linear infinite;
+	animation: blink 5s linear infinite;
+}
+
+@-webkit-keyframes blink {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}
+@keyframes blink {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}
+
+
+/* Standard syntax */
+@-webkit-keyframes spin {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+@keyframes spin {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+/* top bar
+------------------ */
+#head-nav {
+	min-height: 50px;
+	color: #AAA;
+	background-color: #333;
+	line-height: 46px;
+	padding-right: 10px;
+}
+
+.navbar-default {
+	border: 0;
+}
+
+.navbar-header {
+	padding: 0 10px;
+	max-width: 300px;
+}
+
+#nav-expand {
+	min-height: 100px;
+	color: #AAA;
+	background-color: #333;
+	line-height: 46px;
+}
+
+
+#navbar-header {
+	font-size: 2em;
+	padding: 0 20px;
+}
+
+#nav-user-area {
+	max-width: 300px;
+}
+
+.nav-block {
+	display: inline-block;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+	color: white;
+}
+
+.ladda-button {
+	font-weight: bold;
+	padding: 4px 8px !important;
+}
+
+a {
+	cursor: pointer;
+}
+
+#game-log td {
+	padding: 0;
+	padding-left: 10px;
+}
+
+.breadcrumb {
+	margin-bottom: 0 !important;
+}
+
+.qr-container img {
+	margin:auto;
+}
+
+.topic {
+	min-height: 2em;
+}
+
+.game-name {
+	display: inline-block;
+	min-width: 10em;
+}
+
+.tagline .text {
+	font-weight: normal;
+	color: #333;
+	font-size: 0.75em;
+}
+
+.game-port {
+	border: 1px solid #AAA;
+	border-radius: 3px;
+	font-size: 0.8em;
+    padding: 0.2em 0.5em;
+}
+
+.game-admin-panel iframe {
+	width: 100%;
+	height: 100%;
+	border: 0px;
+}
+
+.user-online, .user-offline {
+	display: inline-block;
+	border-radius: 12px;
+	width: 12px;
+	height: 12px;
+	margin: 4px;
+	margin-right: 0.5em;
+	transform: translate(0,5px);
+}
+
+.user-online {
+	background-color: #1ed760;
+}
+
+.user-offline {
+	background-color: #d71e30;
+}
