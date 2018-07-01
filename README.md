@@ -1,6 +1,6 @@
-# gamehouse
+# gameshouse
 
-GameHouse is a server application meant to make easy to create persistent multiplayer browser games.
+GamesHouse is a server application meant to make easy to create persistent multiplayer browser games.
 
 It gives the next features:
 
