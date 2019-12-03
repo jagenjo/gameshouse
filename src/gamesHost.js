@@ -25,6 +25,7 @@ GamesHost.prototype.init = function( server, config )
 {
 	var that = this;
 	this.db = server.db;
+	this.config = config;
 
 	console.log(" * SDK version: ", GameServerInstance.version );
 	
@@ -182,7 +183,7 @@ GamesHost.prototype.launchGame = function( game_data, port )
 	}
 
 	//create game instance
-	var instance = new GameServerInstance( game_data, game_info, port );
+	var instance = new GameServerInstance( game_data, game_info, port, this.config );
 	instance.db = this.db;
 	instance.host = this;
 	instance.game_id = game_data.id;

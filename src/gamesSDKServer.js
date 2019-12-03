@@ -3,7 +3,7 @@
 
 //include by putting require(GLOBAL.GSDKC)
 
-//var http      = require('http');
+var https      = require('https');
 var WebSocketServer = require('ws').Server;
 var colors = require('colors');
 
@@ -13,6 +13,7 @@ var Users = require('./users');
 var GamesDB = require('./gamesDB');
 var util = require("util");
 var Url = require("url");
+var fs = require("fs");
 
 var in_server = true;
 var port_start_range = 8200;
@@ -28,7 +29,7 @@ var SDK_VERSION = "0.103";
 
 //game_data is data stored in the DB
 //game_info is the game type information
-function GameServerInstance( game_data, game_info, server_port )
+function GameServerInstance( game_data, game_info, server_port, config )
 {
 	//console.log('GameServerInstance created');
 
@@ -37,6 +38,7 @@ function GameServerInstance( game_data, game_info, server_port )
 	this.data = game_data;
 	this.game_info = game_info;
 	this.port = server_port || -1;
+	this.config = config;
 
 	this.clients = []; //websockets connected, contains { username, user_key, id }
 	this.binded = {};
@@ -232,6 +234,7 @@ GameServerInstance.prototype.pullEvents = function()
 
 /* connection */
 
+//called from GameServerInstance.prototype.start
 GameServerInstance.prototype.launchServer = function()
 {
 	var that = this;
@@ -247,12 +250,25 @@ GameServerInstance.prototype.launchServer = function()
 	ports_in_use[port] = true;
 	this.port = port;
 
-	//var server = http.createServer();
-	var server = new WebSocketServer({port: port});
-	this.server = server;
+	var options = {};
+	if(this.config.certs && this.config.certs.public && this.config.certs.private )
+	{
+		var cert = fs.readFileSync(this.config.certs.public);
+		var key = fs.readFileSync(this.config.certs.private);
+		//console.log(cert,key);
+		options.key = key;
+		options.cert = cert;
+	}
+
+	var httpserver = https.createServer( options );
+	httpserver.listen(port);
+	this.httpserver = httpserver;
+
+	var wsserver = new WebSocketServer({server:httpserver});
+	this.wsserver = wsserver;
 	
 	//somebody connecting to the game
-	server.on('connection', function( ws, req ) {
+	wsserver.on('connection', function( ws, req ) {
 
 		req = req || ws.upgradeReq;
 		var key = req.url.substr(1);
@@ -340,9 +356,9 @@ GameServerInstance.prototype.closeServer = function()
 		}
 	}
 	
-	if (this.server) {
-		this.server.close();
-		this.server = null;
+	if (this.wsserver) {
+		this.wsserver.close();
+		this.wsserver = null;
 	}
 }
 

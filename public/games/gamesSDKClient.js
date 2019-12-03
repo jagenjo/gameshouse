@@ -40,8 +40,9 @@ var GSDK = {
 		_this.retrying = false;
 		
 		var path = this.key;
+		var protocol = location.protocol == "http:" ? "ws://" : "wss://";
 		
-		var ws = this.socket = new WebSocket('ws://' + GSDK.host + ':' + game_port + '/' + path);
+		var ws = this.socket = new WebSocket( protocol + GSDK.host + ':' + game_port + '/' + path);
 		ws.onopen = function(evt) {
 			_this.retry = -1;
 			console.log('socket connected');

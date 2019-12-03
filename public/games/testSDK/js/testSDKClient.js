@@ -3,7 +3,7 @@ var TestGame = {
 	{
 		//retrieve game info
 		GSDK.host = location.hostname;
-		GSDK.path = "/";
+		GSDK.path = "/gameshouse/";
 		var params = getQueryParams();
 		
 		GSDK.connect( params["key"], params["game_id"], this.onConnect.bind(this) );

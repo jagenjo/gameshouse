@@ -8,5 +8,9 @@
 	  "password" : "",
 	  "multipleStatements": true
 	},
-	"salt":"change this string for any other string that you like"
+	"salt":"change this string for any other string that you like",
+	"certs": {
+		"private":"",
+		"public":""
+	}
 }
