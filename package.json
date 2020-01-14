@@ -10,7 +10,8 @@
     "md5": "^2.2.1",
     "mysql": "^2.15.0",
     "redis": "^2.8.0",
-    "validator": "^9.2.0"
+    "validator": "^9.2.0",
+    "ws": "^7.2.1"
   },
   "devDependencies": {},
   "scripts": {

@@ -3,7 +3,7 @@
 //this doesnt contain info about other players because that depends entirely on the Game Server.
 
 var GSDK = {
-	host: '',
+	host: location.hostname, //where is the games host located (required to stablish a connection)
 	path: '', //set by config
 	
 	binded: [],
@@ -154,7 +154,7 @@ function isServerGame()
 	return false;
 }
 
-function getJSON(url,params, callback, error)
+function getJSON(url, params, callback, error)
 {
 	if(params)
 	{
