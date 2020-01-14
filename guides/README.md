@@ -16,11 +16,23 @@ Including the ones related to the server.
 
 You must create the Game Server, this is a file that contains the code that the server must execute when the game is running, there is an example below.
 
-Once you have the server, you can create the client that will connect with the platform.
+Once you have the server, you can create the client that will connect with the platform. There is an example below.
 
+Finally you must add the game to the games-list.json file in the gameshouse root folder:
 
+```json
+	"TestSDK": {
+		"name":"Test SDK",
+		"description":"this game allows to test all the functionalities of the Games SDK",
+		"version":"0.1",
+		"launch":"games/testSDK/",
+		"folder":"../public/games/testSDK/",
+		"includes": ["js/testSDKServer.js"],
+		"panel": "admin.html"
+	}
+```
 
-- Your HTML must include the SDK located in the games folder ```../gamesSDKClient.js```
+Now when someone creates a game in the platform the option to use that game will appear.
 
 ## The Game Server
 
@@ -227,9 +239,12 @@ TestGameCore.prototype.logMessage = function(msg)
 this.main = TestGameCore;
 ```
 
-### The Game Client
+## The Game Client
 
-Here is an example of a game client
+Here is an example of a game client.
+
+Your HTML must include the SDK located in the games folder ```../gamesSDKClient.js``` to gain access to all the features.
+
 
 ```js
 var TestGame = {
