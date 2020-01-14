@@ -36,7 +36,9 @@ Now when someone creates a game in the platform the option to use that game will
 
 ## The Game Server
 
-Here is an example of a simple game.
+Here is an example of a simple game server. This class will be executed inside the server, so you can have all the game logic here. This class is also in charge of sending the info to the clients when they are connected.
+
+The server will handle the launch and sleep of this class automatically, according to if there are users online.
 
 ```js
 function TestGameCore()
