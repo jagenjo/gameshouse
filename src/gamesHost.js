@@ -196,7 +196,7 @@ GamesHost.prototype.launchGame = function( game_data, port )
 		game_info.class_object = context.main;
 		if(!game_info.class_object)
 		{
-			console.error((" * ERROR, game without main constructor: " + game_type).red );
+			console.error((" * ERROR, game without main constructor, requires this.main = ServerClassName: " + game_type).red );
 			return null;
 		}
 	}

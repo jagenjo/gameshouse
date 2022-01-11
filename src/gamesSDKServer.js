@@ -181,7 +181,7 @@ GameServerInstance.prototype.removeEventListener = function(type, callback)
 		callback.splice(pos,1);	
 }
 
-GameServerInstance.prototype.dispatchEvent = function(type, evt)
+GameServerInstance.prototype.dispatchEvent = function( type, evt )
 {
 	var callbacks = this.binded[type];
 	if(!callbacks)

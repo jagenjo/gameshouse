@@ -1,8 +1,9 @@
 //example of server side game Core
 //require anything you need here
+//import....
 
-//the ctor receives the instance info
-function TestGameCore()
+//the ctor receives the instance info of GameServerInstance (defined in gamesSDKServer)
+function TestGameCore( gameServerInstance )
 {
 	SERVER.log("TestGameCore launched v0.1");
 	this.server = SERVER;
@@ -19,12 +20,12 @@ function TestGameCore()
 	this.empty_ticks = 0;
 
 	//attach important events
-	SERVER.addEventListener('player_connected', this.onPlayerConnected.bind(this));
-	SERVER.addEventListener('player_disconnected', this.onPlayerDisconnected.bind(this));
-	SERVER.addEventListener('player_message', this.onPlayerMessage.bind(this));
-	SERVER.addEventListener('system', this.onSystemEvent.bind(this));
-	SERVER.addEventListener('sleep', this.onSleep.bind(this));
-	SERVER.addEventListener('event', this.onServerEvent.bind(this));
+	SERVER.addEventListener('player_connected', this.onPlayerConnected.bind(this)); //when a player connects to the game (he is online)
+	SERVER.addEventListener('player_disconnected', this.onPlayerDisconnected.bind(this)); //when a player leaves to the game (he is offline)
+	SERVER.addEventListener('player_message', this.onPlayerMessage.bind(this)); //a player game sends a message (could be an interaction message)
+	SERVER.addEventListener('system', this.onSystemEvent.bind(this));	//system events are players joining the game "new_player", or abandoning it "player_leave" or the game has been deleted "game_deleted"
+	SERVER.addEventListener('sleep', this.onSleep.bind(this));			//the host wants to close the game instance
+	SERVER.addEventListener('event', this.onServerEvent.bind(this));	//command entered through the admin interface console
 
 	//recover game state
 	SERVER.loadData('game_state', (function(val) {
@@ -63,7 +64,7 @@ TestGameCore.prototype.onSystemEvent = function(event)
 	//store message in game log
 	this.logMessage(msg);
 
-	//send message to all participants
+	//send message to all participants online
 	SERVER.sendMessage("MSG|" + msg);
 }
 

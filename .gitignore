@@ -1,5 +1,9 @@
 config.json
 nohup.out
+*.cert
+*.key
+*.pem
+certs
 
 # Logs
 logs

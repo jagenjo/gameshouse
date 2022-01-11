@@ -6,14 +6,13 @@
   "dependencies": {
     "colors": "^1.1.2",
     "express": "^4.16.2",
-    "express-ws": "^3.0.0",
+    "express-ws": "^5.0.2",
     "md5": "^2.2.1",
     "mysql": "^2.15.0",
-    "redis": "^2.8.0",
-    "validator": "^9.2.0",
+    "redis": "^4.0.1",
+    "validator": "^13.7.0",
     "ws": "^7.2.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "node main.js"
   },
