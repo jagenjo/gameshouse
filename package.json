@@ -1,6 +1,6 @@
 {
   "name": "gameshouse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server to run games",
   "main": "main.js",
   "dependencies": {
@@ -11,7 +11,7 @@
     "mysql": "^2.15.0",
     "redis": "^4.0.1",
     "validator": "^13.7.0",
-    "ws": "^7.2.1"
+    "ws": "^7.5.6"
   },
   "scripts": {
     "test": "node main.js"
